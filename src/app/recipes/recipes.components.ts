@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, DoCheck} from '@angular/core'
 import {Recipe} from "./recipe.model";
 
 @Component({
@@ -6,11 +6,18 @@ import {Recipe} from "./recipe.model";
   templateUrl:'./recipes.components.html',
   styleUrls:['./recipes.components.css']
 })
-export class RecipesComponent implements OnInit{
+export class RecipesComponent implements OnInit, DoCheck{
 
   recipeWasSelected:Recipe;
+  showDetails:boolean;
 
   ngOnInit(): void {
-
   }
+
+  ngDoCheck(){
+    if(this.recipeWasSelected != null){
+      this.showDetails = true;
+    }
+  }
+
 }
